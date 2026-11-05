@@ -315,6 +315,10 @@ def get_stats():
 # Serve frontend
 app.mount("/app", StaticFiles(directory=FRONT_DIR, html=True), name="frontend")
 
+@app.get("/")
+def serve_root():
+    return FileResponse(os.path.join(FRONT_DIR, "index.html"))
+
 @app.get("/ui")
 def serve_ui():
     return FileResponse(os.path.join(FRONT_DIR, "index.html"))
